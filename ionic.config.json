@@ -1,0 +1,7 @@
+{
+  "name": "Cacharbot",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
