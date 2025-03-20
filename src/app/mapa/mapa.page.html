@@ -1,0 +1,79 @@
+<ion-header>
+  <ion-toolbar class="custom-toolbar">
+    <ion-title class="ion-text-center">
+      Cacharbot V.1
+    </ion-title>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Contenedor para los botones de creación y carga de rutas -->
+  <ion-fab vertical="top" horizontal="start" slot="fixed" *ngIf="!showCreateRouteMenu && !showLoadedRoutesMenu && !isTracking">
+    <!-- Botón para mostrar el menú de creación de ruta -->
+    <ion-fab-button class="custom-primary" (click)="toggleCreateRouteMenu()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+
+    <!-- Botón para mostrar el menú de rutas cargadas -->
+    <ion-fab-button class="custom-primary" (click)="toggleLoadedRoutesMenu()">
+      <ion-icon name="list"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <!-- Menú de creación de ruta -->
+  <div *ngIf="showCreateRouteMenu" class="create-route-menu">
+    <h3>Crear Ruta</h3>
+    <h2>Agrega puntos en el mapa para crear la ruta.</h2>
+    <ion-button expand="full" class="custom-primary" (click)="startRouteCreation()" *ngIf="!isCreatingRoute">
+      Agregar Ruta
+    </ion-button>
+    <ion-button expand="full" class="custom-primary" (click)="saveRoute()" *ngIf="isCreatingRoute && selectedRoute && selectedRoute.waypoints.length > 0">
+      Guardar Ruta
+    </ion-button>
+    <ion-button expand="full" class="custom-danger" (click)="cancelRouteCreation()">
+      Cancelar
+    </ion-button>
+  </div>
+
+  <!-- Menú de rutas cargadas -->
+  <div *ngIf="showLoadedRoutesMenu" class="loaded-routes-menu">
+    <h3>Rutas Guardadas</h3>
+    <ion-list>
+      <ion-item *ngFor="let route of savedRoutes" (click)="loadRoute(route)">
+        <ion-label>{{ route }}</ion-label>
+
+        <!-- Botón para eliminar ruta -->
+        <ion-button fill="clear" color="danger" (click)="deleteRoute(route)">
+          Eliminar
+        </ion-button>
+      </ion-item>
+    </ion-list>
+    <ion-button expand="full" class="custom-danger" (click)="toggleLoadedRoutesMenu()">
+      Cerrar
+    </ion-button>
+  </div>
+
+  <!-- Botón "Iniciar Trayecto" -->
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed" *ngIf="selectedRoute && !isTracking && !showCreateRouteMenu">
+    <ion-fab-button class="custom-start" (click)="startJourney()">
+      Iniciar Trayecto
+    </ion-fab-button>
+  </ion-fab>
+
+  <!-- Botones SOS y Detener seguimiento -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="isTracking">
+    <ion-fab-button class="custom-danger" (click)="sendSOS()">
+      SOS
+    </ion-fab-button>
+
+    <ion-fab-button class="custom-secondary" (click)="stopTrackingAndReturn()">
+      Detener Seguimiento
+    </ion-fab-button>
+  </ion-fab>
+
+  <!-- Contenedor del mapa -->
+  <div id="map" class="map-container"></div>
+
+  
+</ion-content>

@@ -1,0 +1,67 @@
+.map-container {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+#map {
+  height: 100%;
+  width: 100%;
+}
+
+.create-route-menu,
+.loaded-routes-menu {
+  position: absolute;
+  top: 60px;
+  left: 10px;
+  background: white;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+.instruction-container {
+  position: absolute;
+  bottom: 80px;
+  left: 10px;
+  background: white;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.custom-toolbar {
+  --background: #3880ff;
+  --color: white;
+}
+
+.custom-primary {
+  --background: #3880ff;
+  --color: white;
+}
+
+.custom-danger {
+  --background: #eb445a;
+  --color: white;
+}
+
+.custom-secondary {
+  --background: #3dc2ff;
+  --color: white;
+}
+
+.custom-start {
+  --background: #2dd36f;
+  --color: white;
+}
+.leaflet-marker-icon,
+.leaflet-marker-shadow {
+  display: block !important;
+  opacity: 1 !important;
+}
